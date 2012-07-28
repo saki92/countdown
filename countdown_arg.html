@@ -14,16 +14,6 @@ function startTime(time) {
 	var h=today.getHours();
 	var m=today.getMinutes();
 	var s=today.getSeconds();
-/*
-if (_seth<h)
-{
-var seth=(24-h)+_seth;
-}
-else
-{
-var seth=_seth;
-}
-*/
 	var totals=(seth*60*60)+(setm*60);
 	var totalm=(seth*60)+setm;
 
@@ -36,7 +26,6 @@ var seth=_seth;
 	rm=Math.floor(rs/60);
 	fm=rm-(rh*60)
 	fs=rs-(rm*60);
-	// add a zero in front of numbers<10
 	nh=checkTime(rh);
 	nm=checkTime(fm);
 	ns=checkTime(fs);
