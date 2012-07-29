@@ -101,10 +101,10 @@ function settings() {
 		var id_key=num+'_time'
 //		var timearr=new array();
 		localStorage.setItem(id_key, document.getElementById(id_val).value);
-//		timearr.push(localStorage.getItem(id_key));
+		timearr.push(localStorage.getItem(id_key));
 	}
 	localStorage.setItem("mainarr",JSON.stringify(timearr));
-	document.getElementById("settings").innerHTML=localStorage.getItem("mainarr");
+//	document.getElementById("settings").innerHTML=localStorage.getItem("mainarr");
 } 
 
 </script>
