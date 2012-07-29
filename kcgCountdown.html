@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script type="text/javascript">
+rs=1;
+function startTime(time,id) {
+	var splittime=time.split(",");
+	var seth=splittime[0];
+	var setm=splittime[1];
+	parseInt(seth);
+	parseInt(setm);
+	var sets=0;
+	var today=new Date();
+	var h=today.getHours();
+	var m=today.getMinutes();
+	var s=today.getSeconds();
+	var totals=(seth*60*60)+(setm*60);
+	var totalm=(seth*60)+setm;
+
+	var currents=h*60*60;
+	var currentm=(h*60)+m;
+	var acts=currents+(m*60)+s;
+	window.rs=totals-acts;
+	//rm=totalm-currentm;
+	rh=Math.floor(rs/3600);
+	rm=Math.floor(rs/60);
+	fm=rm-(rh*60)
+	fs=rs-(rm*60);
+	var nh=checkTime(rh);
+	var nm=checkTime(fm);
+	var ns=checkTime(fs);
+	Math.abs(nh);
+	display(id,nh,nm,ns);
+//	document.getElementById('txt').innerHTML=nh+":"+nm+":"+ns;
+//	document.getElementById('time').innerHTML=h+":"+m+":"+s;
+}
+
+function checkTime(i) {
+	if (i<10) {
+		i="0" + i;
+		}
+	return i;	
+	
+}
+
+
+function onLoad() {
+	var timearr=new Array("16,52","16,53","17,03","17,04","17,05");
+	localStorage.setItem("mainarr",JSON.stringify(timearr));
+	newarr=JSON.parse(localStorage.getItem("mainarr"))
+	rearr=JSON.parse(localStorage.getItem("mainarr"));
+//	rearr.reverse();
+//	document.getElementById("time").innerHTML=newarr[1];
+	countDown();
+}
+
+function display(id,nh,nm,ns) {
+	document.getElementById(id).innerHTML=nh+":"+nm+":"+ns;
+}
+
+function countDown() {
+	startTime(rearr[4],"last");
+//	document.getElementById("time").innerHTML=newarr;
+	var tod=new Date();
+	var h=tod.getHours();
+	var m=tod.getMinutes();
+	for ( var i=0; i<newarr.length; i++) {
+		var seth=newarr[i].split(",");
+		if (seth[0]<h) {
+			newarr.shift();
+			break;
+		}
+		else if(seth[0]=h && seth[1]<=m) {
+			newarr.shift();
+			break;
+		}
+		if (rs==0) {
+			startTime(newarr[i+1],"txt");
+			newarr.shift();
+			break;
+		} else {
+			startTime(newarr[i],"txt");
+			break;
+		}
+//		document.getElementById("time").innerHTML=newarr;
+	}
+	if (newarr.length!==0){
+	setTimeout(function(){countDown()},1);
+}
+}
+
+function toggle() {
+	var set = document.getElementById("settings");
+	var text = document.getElementById("txt");
+	if(set.style.display == "block") {
+    		set.style.display = "none";
+		text.style.display = "block";
+  	}
+	else {
+		set.style.display = "block";
+		text.style.display = "none";
+	}
+}
+
+
+</script>
+<style type="text/css">
+div.txt {padding:5cm 11cm;}
+p.icon {padding-left:22cm;}
+</style>
+</head>
+
+<body onload="onLoad()">
+
+<div id="time"></div>
+<h1><div class="txt" id="txt" style="display: block; color:white; background-color:black"></h1>
+<h3 id="last"></h3>
+<!--<p class="icon"><a href='javascript:toggle();'><img src="settings.png" width="64" height="57" /></a></p></div>
+<div id="settings" style="display: none">
+Enter the time in format - hh,mm
+Start bell HR<input type='text' id='1_hr' maxlength='5'> 
+Second bell HR<input type='text' id='2_hr' maxlength='5'> 
+Third bell HR<input type='text' id='3_hr' maxlength='5'>
+Fourth bell HR<input type='text' id='4_hr' maxlength='5'>
+Fifth bell HR<input type='text' id='5_hr' maxlength='5'>
+Sixth bell HR<input type='text' id='6_hr' maxlength='5'>
+Seventh bell HR<input type='text' id='7_hr' maxlength='5'>
+Eighth bell HR<input type='text' id='8_hr' maxlength='5'>
+<button onclick="javascript:settings()" type='button'>Save</button>
+</div>-->
+</body>
+</html>
