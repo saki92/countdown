@@ -43,9 +43,19 @@ function checkTime(i) {
 	
 }
 
+function init() {
+	var tod=new Date();
+	var h=tod.getHours();
+	var m=tod.getMinutes();
+	if (h>=16 && m>=10) {
+		document.getElementById("txt").innerHTML="Day is Over";
+	} else {
+		onLoad();
+	}
+}
 
 function onLoad() {
-	var timearr=new Array("16,52","16,53","17,03","17,04","17,05");
+	var timearr=new Array("16,52","16,53","17,03","17,26","17,28");
 	localStorage.setItem("mainarr",JSON.stringify(timearr));
 	newarr=JSON.parse(localStorage.getItem("mainarr"))
 	rearr=JSON.parse(localStorage.getItem("mainarr"));
@@ -86,7 +96,9 @@ function countDown() {
 	}
 	if (newarr.length!==0){
 	setTimeout(function(){countDown()},1);
-}
+	} else {
+	document.getElementById("txt").innerHTML="Day is Over";
+	}
 }
 
 function toggle() {
@@ -110,7 +122,7 @@ p.icon {padding-left:22cm;}
 </style>
 </head>
 
-<body onload="onLoad()">
+<body onload="init()">
 
 <div id="time"></div>
 <h1><div class="txt" id="txt" style="display: block; color:white; background-color:black"></h1>
