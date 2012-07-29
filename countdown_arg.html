@@ -62,10 +62,12 @@ function countDown() {
 	var m=tod.getMinutes();
 	for ( var i=0; i<newarr.length; i++) {
 		var seth=newarr[i].split(",");
-		if (seth[0]<=h){
-			if (seth[0]<=h && seth[1]<m) {
+		if (seth[0]<=h && seth[1]<m) {
 			newarr.shift();
-		}}
+		}
+		else if(seth[0]<h && seth[1]>m) {
+			newarr.shift();
+		}
 		if (rs==0) {
 			startTime(newarr[i+1],"txt");
 			newarr.shift();
@@ -75,7 +77,7 @@ function countDown() {
 			break;
 		}
 	}
-	setTimeout(function(){countDown()},500);
+	setTimeout(function(){countDown()},1);
 }
 
 function toggle() {
@@ -119,6 +121,7 @@ p.icon {padding-left:22cm;}
 <h3 id="last"></h3>
 <p class="icon"><a href='javascript:toggle();'><img src="settings.png" width="64" height="57" /></a></p></div>
 <div id="settings" style="display: none">
+Enter the time in format - hh,mm
 Start bell HR<input type='text' id='1_hr' maxlength='5'> 
 Second bell HR<input type='text' id='2_hr' maxlength='5'> 
 Third bell HR<input type='text' id='3_hr' maxlength='5'>
