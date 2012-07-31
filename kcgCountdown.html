@@ -49,13 +49,14 @@ function init() {
 	var m=tod.getMinutes();
 	if (h>=16 && m>=10) {
 		document.getElementById("txt").innerHTML="Day is Over";
+		document.getElementById("last").innerHTML="Day is over";
 	} else {
 		onLoad();
 	}
 }
 
 function onLoad() {
-	var timearr=new Array("16,52","16,53","17,03","17,26","17,28");
+	var timearr=new Array("08,30","09,20","10,10","10,20","11,10","12,00","12,50","13,40","14,30","15,20","16,10");
 	localStorage.setItem("mainarr",JSON.stringify(timearr));
 	newarr=JSON.parse(localStorage.getItem("mainarr"))
 	rearr=JSON.parse(localStorage.getItem("mainarr"));
