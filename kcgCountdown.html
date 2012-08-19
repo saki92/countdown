@@ -58,8 +58,10 @@ function init() {
 function onLoad() {
 	var timearr=new Array("08,30","09,20","10,10","10,20","11,10","12,00","12,50","13,40","14,30","15,20","16,10");
 	localStorage.setItem("mainarr",JSON.stringify(timearr));
-	newarr=JSON.parse(localStorage.getItem("mainarr"))
+	newarr=JSON.parse(localStorage.getItem("mainarr"));
 	rearr=JSON.parse(localStorage.getItem("mainarr"));
+//	newarr = timearr;
+//	rearr = timearr;
 //	rearr.reverse();
 //	document.getElementById("time").innerHTML=newarr[1];
 	countDown();
@@ -71,7 +73,7 @@ function display(id,nh,nm,ns) {
 
 function countDown() {
 	startTime(rearr[10],"last");
-//	document.getElementById("time").innerHTML=newarr;
+//	document.getElementById("last").innerHTML=newarr;
 	var tod=new Date();
 	var h=tod.getHours();
 	var m=tod.getMinutes();
@@ -93,12 +95,12 @@ function countDown() {
 			startTime(newarr[i],"txt");
 			break;
 		}
-//		document.getElementById("time").innerHTML=newarr;
+//		document.getElementById("last").innerHTML=newarr;
 	}
 	if (newarr.length!==0){
 	setTimeout(function(){countDown()},1);
 	} else {
-	document.getElementById("txt").innerHTML="Day is Over";
+	document.getElementById("txt").innerHTML="Day is over";
 	}
 }
 
@@ -118,28 +120,13 @@ function toggle() {
 
 </script>
 <style type="text/css">
-div.txt {padding:5cm 11cm;}
-p.icon {padding-left:22cm;}
 </style>
 </head>
 
-<body onload="init()">
+<body bgcolor="black" onload="init()">
+<div style="background-color:black; position:absolute; top:1px height:40%"></div> 
+<div id="txt" style="position:absolute; text-align:center; top:250px; font-size:2em; height:50%; width:99%; color:white; background-color:black"></div>
+<div id="last" style="position:absolute; color:white; bottom:10px"></div
 
-<div id="time"></div>
-<h1><div class="txt" id="txt" style="display: block; color:white; background-color:black"></h1>
-<h3 id="last"></h3>
-<!--<p class="icon"><a href='javascript:toggle();'><img src="settings.png" width="64" height="57" /></a></p></div>
-<div id="settings" style="display: none">
-Enter the time in format - hh,mm
-Start bell HR<input type='text' id='1_hr' maxlength='5'> 
-Second bell HR<input type='text' id='2_hr' maxlength='5'> 
-Third bell HR<input type='text' id='3_hr' maxlength='5'>
-Fourth bell HR<input type='text' id='4_hr' maxlength='5'>
-Fifth bell HR<input type='text' id='5_hr' maxlength='5'>
-Sixth bell HR<input type='text' id='6_hr' maxlength='5'>
-Seventh bell HR<input type='text' id='7_hr' maxlength='5'>
-Eighth bell HR<input type='text' id='8_hr' maxlength='5'>
-<button onclick="javascript:settings()" type='button'>Save</button>
-</div>-->
 </body>
 </html>
